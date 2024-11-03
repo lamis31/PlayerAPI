@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
@@ -29,7 +30,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
   @Override
   @Transactional
-  public void onApplicationEvent(ContextRefreshedEvent event) {
+  public void onApplicationEvent(@NonNull ContextRefreshedEvent event) {
     if (alreadySetup || playerRepository.findAll().iterator().hasNext()) {
       return;
     }
